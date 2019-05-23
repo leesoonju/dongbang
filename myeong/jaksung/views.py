@@ -5,7 +5,8 @@ from .models import Bang
 
 def home(request):
     dongs = Dong.objects
-    return render(request, 'home.html', {'dongs' : dongs})
+    bangs = Bang.objects
+    return render(request, 'home.html', {'dongs' : dongs, 'bangs': bangs})
 
 
 def submit(request):
@@ -19,8 +20,8 @@ def submit(request):
 
 def reple(request):
     e = Bang()
-    e.message = request.GET['f']
-    e.writer = request.GET['g']
-    e.date = request.GET['h']
+    e.message = request.POST['f']
+    e.writer = request.POST['g']
+    e.date = request.POST['h']
     e.save()
     return redirect('/')
